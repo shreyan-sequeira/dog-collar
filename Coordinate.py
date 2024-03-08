@@ -9,13 +9,13 @@ class Coordinate:
     
     # Returns the coordinates in X Y Z form where (0, 0, 0) is the center of the earth
     def ConvertToXYZ(self):
-        # radius uses earth radius, a more precise measurement would use the actual height of the coordinate
+        # uses the earth's sea level plus the distance from sea level
         X = math.cos(self.latitude * math.pi / 180) * (6356752 + self.radius)
         Y = math.sin(self.longitude * math.pi / 180) * (6356752 + self.radius)
         Z = math.sin(self.latitude * math.pi / 180) * (6356752 + self.radius)
         return X, Y, Z
 
-    # Takes in another Coordinate object and returns the distance between them in meters
+    # Takes in another Coordinate object and returns the distance between them in meters linearly
     def DistanceTo(self, Coordinate):
         X1, Y1, Z1 = self.ConvertToXYZ()
         X2, Y2, Z2 = Coordinate.ConvertToXYZ()
