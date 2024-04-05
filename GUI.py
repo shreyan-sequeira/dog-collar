@@ -3,7 +3,6 @@ from tkinter import ttk
 import threading
 import queue
 import time
-import random
 
 class GPSDesktopApp:
     def __init__(self, root):
@@ -25,14 +24,11 @@ class GPSDesktopApp:
         self.gps_thread.start()
 
     def track_gps(self):
-        while True:
-            # Simulate GPS coordinates
-            longitude = random.uniform(-180, 180)
-            latitude = random.uniform(-90, 90)
-
+        # Example coordinates
+        coordinates = [(37.7749, -122.4194), (34.0522, -118.2437), (40.7128, -74.0060)]
+        for coord in coordinates:
             # Put the coordinates into the queue
-            self.gps_queue.put((longitude, latitude))
-
+            self.gps_queue.put(coord)
             # Wait for a short period before generating new coordinates
             time.sleep(1)
 
@@ -57,3 +53,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
